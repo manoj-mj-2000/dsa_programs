@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class DynamicArray{
+public class DynamicArray<T>{
 	int startCapacity = 2;
 	T arr[];
 	int size, capacity;
