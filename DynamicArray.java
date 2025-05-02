@@ -3,7 +3,6 @@ public class DynamicArray{
 	int startCapacity = 2;
 	int arr[];
 	int size, capacity;
-	int pos=0;
 
 	public DynamicArray() {
 		arr = new int[startCapacity];
@@ -40,22 +39,19 @@ public class DynamicArray{
 	}
 	
 	public int delete(int index) {
-		if(index > arr.length) {
-			throw new IndexOutOfBoundsException();
-		}
+		
 		int val = arr[index];
 		int n = arr.length;
 		
-		for(int i=index; i<n; i++) {
-			arr[index] = arr[index+1];
+		for(int i=index; i<size; i++) {
+			arr[i] = arr[i+1];
 		}
-		pos--;
+		size--;
 		return val;
 	}
 	
 	public void arrToString() {
-		int n=arr.length;
-		for(int i=0;i<n; i++) {
+		for(int i=0;i<size; i++) {
 			System.out.print(arr[i]+" ");
 		}
 		System.out.println();
