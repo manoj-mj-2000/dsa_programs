@@ -1,18 +1,19 @@
 import java.util.Arrays;
 public class DynamicArray{
 	int startCapacity = 2;
-	int arr[];
+	T arr[];
 	int size, capacity;
-
+	
+	@SuppressWarnings("unchecked")
 	public DynamicArray() {
-		arr = new int[startCapacity];
+		arr = (T[]) new Object[startCapacity];
 		capacity=startCapacity; 
 		size=0;
 	}
-	public int get(int index) {
+	public T get(int index) {
 		return arr[index];
 	}
-	public void write(int val) {
+	public void write(T val) {
 		if(size>=capacity) {
 			doubleCapacity();
 		}
@@ -22,11 +23,11 @@ public class DynamicArray{
 		capacity *= 2;
 		arr = Arrays.copyOf(arr, capacity);
 	}
-	public void update(int index, int val) {
+	public void update(int index, T val) {
 		arr[index] = val;
 	}
 	
-	public void insert(int index, int val) {
+	public void insert(int index, T val) {
 		if(size>=capacity) {
 			doubleCapacity();
 		}
@@ -38,9 +39,9 @@ public class DynamicArray{
 		return;
 	}
 	
-	public int delete(int index) {
+	public T delete(int index) {
 		
-		int val = arr[index];
+		T val = arr[index];
 		int n = arr.length;
 		
 		for(int i=index; i<size; i++) {
