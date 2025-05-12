@@ -1,4 +1,4 @@
-class MyLinkedList<T>{
+class MyLinkedList<T> implements Iterable<T>{
 	Node head = null;
 	int size = 0;
 	class Node{
@@ -21,6 +21,22 @@ class MyLinkedList<T>{
 			head = newNode ;
 			size++;
 		}
+	}
+
+	public void reverse() {
+		Node prev = null;
+		Node curr = head;
+		Node next = head.address;
+		
+		while(curr != null) {
+			next = curr.address;
+			curr.address = prev;
+			prev = curr;
+			curr = next;
+		}
+		head = prev;
+		
+		
 	}
 
 	public void update(T val, int pos) {
@@ -106,5 +122,22 @@ class MyLinkedList<T>{
 			System.out.print(temp.val+" ");
 			temp = temp.address;
 		}
+	}
+	
+	@Override
+	public Iterator<T> iterator() {
+		
+		return new Iterator<T>() {
+			Node temp = head;
+			public boolean hasNext() {
+				return temp!=null; 
+			}
+			@Override
+			public T next() {
+				T value = temp.val;
+				temp = temp.address;
+				return value;
+			}
+		};
 	}
 }
