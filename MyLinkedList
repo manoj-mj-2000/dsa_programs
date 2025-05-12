@@ -1,0 +1,110 @@
+class MyLinkedList<T>{
+	Node head = null;
+	int size = 0;
+	class Node{
+		T val;
+		Node address;
+		
+		Node(T value, Node address){
+			this.val = value;
+			this.address = address;
+		}
+	}
+
+	public void insertAtBegining(T val) {
+		Node newNode = new Node(val, null);
+		if(head == null) {
+			head = newNode;
+		}
+		else {
+			newNode.address = head;
+			head = newNode ;
+			size++;
+		}
+	}
+
+	public void update(T val, int pos) {
+		if(head == null) {
+			System.out.println("Empty List");
+			return;
+		}
+		if(pos == 0) {
+			head.val = val;
+			return;
+		}
+		Node temp = head;
+		for(int i=0; i<pos; i++) {
+			temp = temp.address;
+			if(temp == null) {
+				System.out.println("Invalid position");
+				return;
+			}
+		}
+		temp.val = val;
+	}
+
+	public void delete(int pos) {
+		if(head == null) {
+			System.out.println("Empty List");
+			return;
+		}
+		if(pos == 0) {
+			head = head.address;
+			return;
+		}
+		Node temp = head;
+		Node prev = null;
+		for(int i=0; i<pos; i++) {
+			prev = temp;
+			if(temp == null) {
+				System.out.println("Invalid position");
+				return;
+			}
+			temp = temp.address;
+		}
+		prev.address = temp.address;
+		System.out.println("value: "+temp.val);
+	}
+
+	public void insert(T val, int pos) {
+		if(pos == 0) {
+			insertAtBegining(val);
+			return; 
+		}
+		Node newNode = new Node(val, null);
+		Node temp = head;
+		
+		for(int i=0;i<pos;i++) {
+			temp = temp.address;
+			if(temp == null) {
+				System.out.print("Invalid position");
+				return;
+			}
+		}
+		
+		newNode.address = temp.address;
+		temp.address = newNode;
+	}
+
+	public T get(int pos) {
+		Node temp = head;
+		for(int i=0; i<pos; i++) {
+			temp = temp.address;
+		}
+		System.out.println("get("+pos+"): "+temp.val);
+		return temp.val;
+	}
+
+	public int size() {
+		return size;
+	}
+
+	public void getAll() {
+		System.out.println();
+		Node temp = head;
+		while(temp != null) {
+			System.out.print(temp.val+" ");
+			temp = temp.address;
+		}
+	}
+}
