@@ -75,8 +75,8 @@ class BinaryTree{
 		
 		if(root != null) {
 			System.out.println(root.data);
-			inOrderTraversal(root.left);
-			inOrderTraversal(root.right);
+			preOrderTraversal(root.left);
+			preOrderTraversal(root.right);
 		}
 		
 	}
