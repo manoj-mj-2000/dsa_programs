@@ -26,7 +26,7 @@ public class BinarySearchTreeImpl {
 			System.out.println("Found");
 		}
 		
-		BinarySearchTree.delete(bst.root,16);
+		BinarySearchTree.delete(16);
 		System.out.println();
 		BinarySearchTree.inOrderTraversal(bst.root);
 		
@@ -49,6 +49,9 @@ class BinarySearchTree{
 	
 	public BinarySearchTree(int n){
 		root = new Node(n);
+	}
+	public static Node delete(int val) {
+		delete(root,val);
 	}
 
 	public static Node delete(Node root, int val) {
