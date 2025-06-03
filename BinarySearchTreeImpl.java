@@ -17,6 +17,7 @@ public class BinarySearchTreeImpl {
 		bst.insert(16);
 		bst.insert(18);
 		
+		System.out.println();
 		BinarySearchTree.inOrderTraversal(bst.root);
 		
 		if(bst.search(bst.root, 2)== null) {
@@ -24,6 +25,11 @@ public class BinarySearchTreeImpl {
 		}else {
 			System.out.println("Found");
 		}
+		
+		BinarySearchTree.delete(bst.root,16);
+		System.out.println();
+		BinarySearchTree.inOrderTraversal(bst.root);
+		
 	}
 
 }
@@ -43,6 +49,41 @@ class BinarySearchTree{
 	
 	public BinarySearchTree(int n){
 		root = new Node(n);
+	}
+
+	public static Node delete(Node root, int val) {
+		
+		if(root==null) {
+			return null;
+		}
+		
+		if(val > root.data) {
+			root.right = delete(root.right, val);
+		}
+		else if (val < root.data) {
+			root.left = delete(root.left, val);
+		}
+		else {
+			if(root.right == null)
+				return root.left;
+			if(root.left == null)
+				return root.right;
+			
+			root.data = minVal(root.right);
+			root.right = delete(root.right, root.data);
+		}
+		
+		return root;
+	}
+
+	private static int minVal(Node node) {
+		int minVal = 0;
+		
+		while(node.left!=null) {
+			minVal = node.left.data;
+			node = node.left;
+		}
+		return minVal;
 	}
 
 	public Node search(Node root, int val) {
@@ -84,7 +125,7 @@ class BinarySearchTree{
 		
 		if(root != null) {
 			inOrderTraversal(root.left);
-			System.out.println(root.data);
+			System.out.print(root.data +" ");
 			inOrderTraversal(root.right);
 		}
 		
