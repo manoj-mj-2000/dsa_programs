@@ -34,6 +34,26 @@ class Graph{
 	public Graph() {
 		graph = new ArrayList();		
 	}
+
+	public void bfs(int v) {
+		boolean[] visited = new boolean[graph.size()];
+		
+		visited[v] = true;
+		System.out.println();
+		Queue<Integer> q = new LinkedList();
+		q.add(v);
+		
+		while(!q.isEmpty()) {
+			int vertex = q.remove();
+			System.out.print("  "+vertex);
+			for(int i : graph.get(vertex)) {
+				if(!visited[i]) {
+					q.add(i);
+					visited[i] = true;
+				}
+			}
+		}
+	}
 	
 	public void printAllConnections() {
 		for(int i=0;i<5;i++) {
